@@ -1,3 +1,12 @@
+#Idea folder
+/.idea 
+
+#node_modules
+/node_modules
+
+#build folder
+/dist
+
 # Logs
 logs
 *.log
