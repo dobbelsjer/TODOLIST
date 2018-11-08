@@ -1,0 +1,48 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Try something else
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="tasks.length > 0">
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th scope="col">Task ID</th>
+      <th scope="col">Task content</th>
+      <th scope="col">Done</th>
+    </tr>
+    <tr *ngFor="let task of tasks">
+      <td>Task n°={{task.id}}</td>
+      <td>{{task.content}}</td>
+      <td>
+          <div class="checkbox">
+          <label>
+              <input type="checkbox"
+                     [(ngModel)]="task.done"
+                     value=""
+                     (change)="changeTaskStatus(task)">
+          </label>
+      </div>
+      </td>
+    </tr>
+  </table>
+</div>
