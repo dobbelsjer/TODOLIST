@@ -10,13 +10,15 @@ import { LoginComponent } from './login/login.component';
 import {routes} from './app-routing.module';
 import {RouterModule} from '@angular/router';
 import { ReceptionComponent } from './reception/reception.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         TaskListComponent,
         LoginComponent,
-        ReceptionComponent
+        ReceptionComponent,
+        RegisterComponent
     ],
     imports: [
         BrowserModule,
