@@ -11,6 +11,7 @@ import {routes} from './app-routing.module';
 import {RouterModule} from '@angular/router';
 import { ReceptionComponent } from './reception/reception.component';
 import { RegisterComponent } from './register/register.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { RegisterComponent } from './register/register.component';
         TaskListComponent,
         LoginComponent,
         ReceptionComponent,
-        RegisterComponent
+        RegisterComponent,
+        MenuComponent
     ],
     imports: [
         BrowserModule,

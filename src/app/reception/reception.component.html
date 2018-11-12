@@ -1,8 +1,9 @@
-<div>
-    <button type="button" routerLink="/login">Log In</button>
-    <button type="button" routerLink="/register">Register</button>
+<div *ngIf="!isLoggedIn">
+    <button  type="button" routerLink="/login">Log In</button>
+    <button  type="button" routerLink="/register">Register</button>
 </div>
 
-<h1>
-    Home page.
-</h1>
+<div *ngIf="isLoggedIn">
+    <button  type="button" (click)="logout()">Log Out</button>
+</div>
+<app-task-list *ngIf="isLoggedIn"></app-task-list>

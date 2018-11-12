@@ -1,4 +1,5 @@
-<form>
+<h2>Login</h2>
+<form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
     <div>
         <label for="userId">User ID: </label>
         <input id="userId" type="text"/>
@@ -7,6 +8,6 @@
         <label for="userPswd">Password: </label>
         <input id="userPswd" type="text"/>
     </div>
-    <a class="btn btn-primary">Login</a>
+    <button [disabled]="loading" class="btn btn-primary">Login</button>
     <a class="btn btn-secondary" routerLink="/">Cancel</a>
 </form>
