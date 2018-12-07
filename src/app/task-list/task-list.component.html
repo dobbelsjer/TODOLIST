@@ -1,40 +1,58 @@
-<div *ngIf="tasks.length > 0">
+<div style="padding-bottom: 15px" class="col-md-12">
+    <button type="button" class="btn btn-outline-primary btn-block" (click)="newTask()">New Task</button>
+</div>
+<div *ngIf="tasks && tasks.length > 0">
   <table class="table table-bordered table-striped">
     <tr>
-      <th scope="col">Task ID</th>
-      <th scope="col">Task content</th>
-      <th scope="col">Done</th>
+        <th scope="col">Task ID</th>
+        <th scope="col">Task content</th>
+        <th scope="col">Done</th>
+        <th scope="col">Options</th>
     </tr>
     <tr *ngFor="let task of tasks">
-      <td>Task n°={{task.id}}</td>
-      <td>{{task.content}}</td>
-      <td>
+        <td>Task n°={{task.id}}</td>
+        <td>{{task.content}}</td>
+        <td>
           <div class="checkbox">
-          <label>
-              <input type="checkbox"
-                     [(ngModel)]="task.done"
-                     value=""
-                     (change)="changeTaskStatus(task)">
-          </label>
-      </div>
+              <label>
+                  <input type="checkbox"
+                         [(ngModel)]="task.done"
+                         value=""
+                         (change)="changeTaskStatus(task)">
+              </label>
+          </div>
+        </td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="update(task)">Update</button>
+          <button type="button" class="btn btn-danger" (click)="delete(task)">Delete</button>
       </td>
     </tr>
   </table>
 </div>
-
+<!--
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+        <h4 class="modal-title" id="modal-basic-title">New task: </h4>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-        <p>Hello, World!</p>
+        <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !taskContent.valid }">
+                <label for="taskContent">Task</label>
+                <input type="text" class="form-control" name="taskContent" [(ngModel)]="model.login" #loginId="ngModel" required />
+                <div *ngIf="f.submitted && !taskContent.valid" class="help-block">Task field empty</div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary">Save</button>
+            </div>
+        </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+        <button type="button" class="btn btn-danger" (click)="c('Cancel click')">Cancel</button>
     </div>
 </ng-template>
 
 <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+-->

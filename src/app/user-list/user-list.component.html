@@ -1,0 +1,33 @@
+<div style="padding-bottom: 15px" class="col-md-12">
+  <button type="button" class="btn btn-outline-primary btn-block" (click)="createUser()">Create a user</button>
+</div>
+
+<div *ngIf="users.length > 0">
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th scope="col">Login</th>
+      <th scope="col">Role</th>
+      <th scope="col">Active</th>
+      <th scope="col">Actions</th>
+    </tr>
+    <tr *ngFor="let user of users">
+      <td (click)="redirectToUserPage(user)" style="cursor: pointer">{{user.login}}</td>
+      <td>{{user.role}}</td>
+      <td>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"
+                   [(ngModel)]="user.active"
+                   value=""
+                   (change)="changeUserStatus(user)">
+          </label>
+        </div>
+      </td>
+      <td>
+        <button type="button" class="actions btn btn-primary" (click)="edit(user)">Edit</button>
+        <button type="button" class="actions btn btn-warning" (click)="ban(user)">Ban</button>
+        <button type="button" class="actions btn btn-danger" (click)="delete(user)">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>

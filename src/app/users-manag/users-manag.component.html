@@ -1,0 +1,37 @@
+<div *ngIf="user">
+  <div class="modal-header">
+    <h4 class="modal-title">
+      {{title}}
+    </h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="clear()">&times;</button>
+  </div>
+  <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
+    <div class="modal-body">
+      <app-alert></app-alert>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !login.valid }">
+        <label class="form-control-label" for="login">Login</label>
+        <input type="text" class="form-control" name="login" id="login"
+               [(ngModel)]="userCopy.login" #login="ngModel" required>
+        <div *ngIf="f.submitted && !login.valid" class="help-block">Login is required</div>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+        <label class="form-control-label" for="password">Password</label>
+        <input type="password" class="form-control" name="password" id="password"
+               [(ngModel)]="userCopy.password" #password="ngModel" required/>
+        <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+      </div>
+      <div class="form-group">
+        <label class="form-control-label" for="role">Role</label>
+        <select class="form-control" name="role" id="role" [(ngModel)]="userCopy.role">
+          <option *ngFor="let role of userRoles" [ngValue]="role">{{role}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-secondary" (click)="clear()">Cancel</button>
+    </div>
+  </form>
+
+</div>

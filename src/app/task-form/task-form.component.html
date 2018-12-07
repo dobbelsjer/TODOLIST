@@ -1,0 +1,21 @@
+<div *ngIf="task">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Task: </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="clear()">&times;</button>
+    </div>
+    <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
+        <div class="modal-body">
+        <app-alert></app-alert>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !taskContent.valid }">
+                <label for="taskContent">Content: </label>
+                <input type="text" class="form-control" name="taskContent" id="taskContent"
+                       [(ngModel)]="tmpTask.content" #loginId="ngModel" required />
+                <div *ngIf="f.submitted && !taskContent.valid" class="help-block">Task field empty</div>
+            </div>
+        </div>
+    </form>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-danger" (click)="clear()">Cancel</button>
+    </div>
+</div>

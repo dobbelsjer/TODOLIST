@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-
-import { User} from '../models/user';
-import {ConnectionService} from '../services-api/connection.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ConnectionService} from '../services-api/connection.service';
+import {AlertService} from '../services-api/alert.service';
+import {User} from '../models/user';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
     model: User = new User();
@@ -17,11 +17,13 @@ export class LoginComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private connectionService: ConnectionService) {}
+        private authenticationService: ConnectionService,
+        private alertService: AlertService
+    ) { }
 
     ngOnInit() {
         // reset login status
-        this.connectionService.logout();
+        this.authenticationService.logout();
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -30,7 +32,10 @@ export class LoginComponent implements OnInit {
     login() {
         this.loading = true;
         localStorage.setItem('isLoggedIn', 'true');
-        this.router.navigate([this.returnUrl]);
+        localStorage.setItem('isAdmin', 'true');
+        // this.router.navigate([this.returnUrl]);
+        window.location.href = '/';
+
         /*this.authenticationService.login(this.model.login, this.model.password)
             .subscribe(
                 () => {

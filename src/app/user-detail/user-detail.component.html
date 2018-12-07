@@ -1,0 +1,17 @@
+<div *ngIf="user">
+  <div class="modal-header">
+    <h4 class="modal-title">
+      User consultation
+    </h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="clear()">&times;</button>
+  </div>
+  <div class="modal-body">
+    <div>Login : {{user.login}}</div>
+    <div>Active : <input type="checkbox"
+                         [(ngModel)]="user.active"
+                         value="" disabled/></div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="clear()">Close</button>
+  </div>
+</div>

@@ -1,9 +1,1 @@
-<div *ngIf="!isLoggedIn">
-    <button  type="button" routerLink="/login">Log In</button>
-    <button  type="button" routerLink="/register">Register</button>
-</div>
-
-<div *ngIf="isLoggedIn">
-    <button  type="button" (click)="logout()">Log Out</button>
-</div>
 <app-task-list *ngIf="isLoggedIn"></app-task-list>

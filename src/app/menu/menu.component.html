@@ -1,0 +1,17 @@
+<nav class="navbar navbar-dark bg-dark mb-5">
+  <a class="navbar-brand" routerLink="/">TO DO LIST</a>
+  <div class="navbar-expand mr-auto">
+    <div class="navbar-nav">
+      <!--<a class="nav-item nav-link active" href="#">Home</a>-->
+
+      <a *ngIf="isLoggedIn && isAdmin" class="nav-item nav-link" routerLink="/">Users tasks</a>
+      <a *ngIf="isLoggedIn && isAdmin" class="nav-item nav-link" routerLink="/UserL">Users</a>
+      <a *ngIf="isLoggedIn" class="nav-item nav-link" (click)="redirectToProfile()" style="cursor: pointer">Profile</a>
+
+
+      <a *ngIf="!isLoggedIn" class="nav-item nav-link" routerLink="/login">Log In</a>
+      <a *ngIf="!isLoggedIn" class="nav-item nav-link" routerLink="/register">Register</a>
+      <a *ngIf="isLoggedIn" class="nav-item nav-link" (click)="logout()" style="cursor: pointer">Log Out</a>
+    </div>
+  </div>
+</nav>

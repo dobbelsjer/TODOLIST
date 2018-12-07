@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
 import {TaskService} from '../services-api/task.service';
 import {Task} from '../models/task';
+import {User} from '../models/user';
+import {TaskFormComponent} from '../task-form/task-form.component';
 
 @Component({
     selector: 'app-task-list',
@@ -11,20 +13,21 @@ import {Task} from '../models/task';
 export class TaskListComponent implements OnInit {
 
     tasks: Task[];
+    currentUser: User;
 
     constructor(
-        private config: NgbModalConfig,
         private modalService: NgbModal,
+        private config: NgbModalConfig,
         private taskService: TaskService
     ) { }
 
     ngOnInit() {
-        // customize default values of modals used by this component tree
-        this.config.backdrop = 'static';
-        this.config.keyboard = false;
 
         // Asynchronus call :  this.taskService.findAll().subscribe(tasks => this.tasks = tasks);
-        this.tasks = this.taskService.findAll();
+        this.config.backdrop = 'static';
+        this.config.keyboard = false;
+        //temporaire ?
+        this.taskService.findAll(1).subscribe(tasks => this.tasks = tasks);
     }
 
     /**
@@ -35,7 +38,22 @@ export class TaskListComponent implements OnInit {
         this.taskService.update(task);
     }
 
-    open(content) {
-        this.modalService.open(content);
+    update(task: Task) {
+        const modalRef = this.modalService.open(TaskFormComponent);
+        modalRef.componentInstance.task = task;
     }
+
+    delete(task: Task) {
+        console.log('delete');
+        this.taskService.delete(task.id);
+    }
+
+    newTask(){
+        const modalRef = this.modalService.open(TaskFormComponent);
+        const newTask = new Task();
+        newTask.done = false;
+        //newTask.ownerId = this.currentUser.id;
+        modalRef.componentInstance.task = newTask;
+    }
+
 }

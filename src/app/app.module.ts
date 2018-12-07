@@ -12,6 +12,11 @@ import {RouterModule} from '@angular/router';
 import { ReceptionComponent } from './reception/reception.component';
 import { RegisterComponent } from './register/register.component';
 import { MenuComponent } from './menu/menu.component';
+import { UsersManagComponent } from './users-manag/users-manag.component';
+import { AlertComponent } from './alert/alert.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { TaskFormComponent } from './task-form/task-form.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +25,12 @@ import { MenuComponent } from './menu/menu.component';
         LoginComponent,
         ReceptionComponent,
         RegisterComponent,
-        MenuComponent
+        MenuComponent,
+        UsersManagComponent,
+        AlertComponent,
+        UserDetailComponent,
+        UserListComponent,
+        TaskFormComponent
     ],
     imports: [
         BrowserModule,
@@ -29,6 +39,7 @@ import { MenuComponent } from './menu/menu.component';
         HttpClientModule,
         NgbModule
     ],
+    entryComponents: [TaskFormComponent, UsersManagComponent],
     providers: [NgbModalConfig, NgbModal],
     bootstrap: [AppComponent]
 })
